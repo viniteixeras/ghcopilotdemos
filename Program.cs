@@ -37,13 +37,40 @@ app.MapGet("/", () => Results.Content(@"
             font-size: 1.2rem;
             margin-top: 1rem;
         }
+        .change-bg-btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            font-family: Arial, sans-serif;
+        }
+        .change-bg-btn:hover {
+            background-color: #555;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .change-bg-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
     <div class=""container"">
         <h1>Hello, World!</h1>
         <p>Este é um exemplo de página HTML servida por uma aplicação C# web.</p>
+        <button class=""change-bg-btn"" onclick=""changeBackgroundToBlack()"">Alterar para Background Preto</button>
     </div>
+    <script>
+        function changeBackgroundToBlack() {
+            document.body.style.backgroundColor = 'black';
+        }
+    </script>
 </body>
 </html>", "text/html"));
 
