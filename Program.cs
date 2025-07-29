@@ -51,10 +51,19 @@ app.MapGet("/", () => Results.Content(@"
             color: #666;
             font-size: 1.2rem;
             margin-top: 1rem;
-            transition: color 0.3s ease;
+            transition: color 0.4s ease-in-out, opacity 0.3s ease, transform 0.2s ease;
+        }
+        p:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
         }
         .dark-theme p {
             color: #ccc;
+        }
+        .dark-theme p:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
         }
         .toggle-button {
             margin-top: 2rem;
