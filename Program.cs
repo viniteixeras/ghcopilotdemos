@@ -37,14 +37,42 @@ app.MapGet("/", () => Results.Content(@"
             font-size: 1.2rem;
             margin-top: 1rem;
         }
+        .error-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(255, 107, 107, 0.3);
+            transition: all 0.3s ease;
+        }
+        .error-button:hover {
+            background: linear-gradient(45deg, #ff5252, #ff7979);
+            box-shadow: 0 6px 8px rgba(255, 107, 107, 0.4);
+            transform: translateY(-2px);
+        }
+        .error-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
+        }
     </style>
 </head>
 <body>
     <div class=""container"">
         <h1>Hello, World!</h1>
         <p>Este é um exemplo de página HTML servida por uma aplicação C# web.</p>
+        <a href=""/erro"" class=""error-button"">🚨 Gerar Erro</a>
     </div>
 </body>
 </html>", "text/html"));
+
+// Error route that returns HTTP 400 Bad Request
+app.MapGet("/erro", () => Results.BadRequest("Erro HTTP 400 - Bad Request gerado intencionalmente!"));
 
 app.Run();
