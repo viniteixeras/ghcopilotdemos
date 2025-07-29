@@ -1,5 +1,7 @@
 # GH Copilot Testes em C#
 
+[![Build Validation](https://github.com/viniteixeras/ghcopilotdemos/actions/workflows/build-validation.yml/badge.svg)](https://github.com/viniteixeras/ghcopilotdemos/actions/workflows/build-validation.yml)
+
 Este repositório contém um projeto C# web simples para testar e explorar as funcionalidades do GitHub Copilot.
 
 ## Como executar
@@ -23,3 +25,13 @@ A aplicação serve uma página HTML que exibe "Hello, World!" em um design resp
 ## Objetivo
 
 Facilitar experimentos, sugestões e aprendizado com o GitHub Copilot em C#, agora com uma interface web visual.
+
+## Build Validation
+
+Este repositório inclui validação automática de build através do GitHub Actions que:
+- ✅ Verifica a restauração de dependências
+- ✅ Valida a compilação da aplicação
+- ✅ Testa se a aplicação inicia corretamente
+- ✅ Verifica se o endpoint principal responde adequadamente
+
+A validação é executada automaticamente em todos os pushes e pull requests para as branches principais.

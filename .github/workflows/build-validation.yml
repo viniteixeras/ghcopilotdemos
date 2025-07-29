@@ -1,0 +1,45 @@
+name: Build Validation
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build application
+      run: dotnet build --no-restore --configuration Release
+      
+    - name: Test application startup
+      run: |
+        echo "Starting application in background..."
+        timeout 15s dotnet run --no-build --configuration Release --urls "http://localhost:5000" > app.log 2>&1 &
+        APP_PID=$!
+        echo "Waiting for application to start..."
+        sleep 8
+        echo "Testing application endpoint..."
+        if curl -f -s http://localhost:5000 | grep -q "Hello, World!"; then
+          echo "✅ Application is responding correctly"
+        else
+          echo "❌ Application is not responding as expected"
+          cat app.log
+          exit 1
+        fi
+        echo "Stopping application..."
+        kill $APP_PID 2>/dev/null || true
+        wait $APP_PID 2>/dev/null || true
